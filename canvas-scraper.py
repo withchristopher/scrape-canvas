@@ -23,7 +23,7 @@ def get_course_files(course):
 
     module: Module = modules[4]
     module_items = module.get_module_items()
-   for item in module_items:
+    for item in module_items:
         item: ModuleItem = item
 
         path = f"{output}/" \
