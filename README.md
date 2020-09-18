@@ -1,5 +1,6 @@
 # Canvas scraper
-Forked from [Koenvh1](https://gist.github.com/Koenvh1/6386f8703766c432eb4dfa19acdb0244)
+-> Forked From from [johnhix]
+- - >Forked from [Koenvh1](https://gist.github.com/Koenvh1/6386f8703766c432eb4dfa19acdb0244)
 
 # Please double-check the data
 Often professors will embed videos that require authentication to view, etc.
@@ -18,12 +19,11 @@ mount it to the Docker container, perform the following commands:
 docker run \
   -u "$(id -u)" \
   -v "$(pwd)"/data:/usr/src/app/data \
-  johnhix/scrape-canvas:0.0.1 \
+  withchristopher/course_scraper \
   https://institution.canvas-address.edu \
   canvas-api-key \
   ./data \
   all
-
 ```
 The last option, `all`, can be replaced with a comma-separated list
 of course ids.
