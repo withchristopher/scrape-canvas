@@ -22,7 +22,7 @@ def get_course_files(course):
     files_downloaded = set() # Track downloaded files for this course to avoid duplicates
 
     for module in modules:
-        if module == modules[4]:
+        if module == modules[4]: #only iterate over 1 module
             module: Module = module
             module_items = module.get_module_items()
             for item in module_items:
