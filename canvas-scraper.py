@@ -21,7 +21,7 @@ def get_course_files(course):
 
     files_downloaded = set() # Track downloaded files for this course to avoid duplicates
 
-    for module in modules[:1]:
+    for module in modules:
         module: Module = module
         module_items = module.get_module_items()
         for item in module_items:
@@ -42,39 +42,12 @@ def get_course_files(course):
                 file = canvas.get_file(item.attributes["content_id"])
                 files_downloaded.add(item.attributes["content_id"])
                 file.download(path + sanitize_filename(file.attributes['filename']))
-            elif item_type == "Page":
-                page = course.get_page(item.attributes["page_url"])
-                with open(path + sanitize_filename(item.attributes['title']) + ".html", "w", encoding="utf-8") as f:
-                    f.write(page.attributes["body"] or "")
-                files = extract_files(page.attributes["body"] or "")
-                for file_id in files:
-                    if file_id in files_downloaded:
-                        continue
-                    try:
-                        file = course.get_file(file_id)
-                        files_downloaded.add(file_id)
-                        file.download(path + sanitize_filename(file.attributes['filename']))
-                    except ResourceDoesNotExist:
-                        pass
+            
             elif item_type == "ExternalUrl":
                 url = item.attributes["external_url"]
                 with open(path + sanitize_filename(item.attributes['title']) + ".url", "w") as f:
                     f.write("[InternetShortcut]\n")
                     f.write("URL=" + url)
-            elif item_type == "Assignment":
-                assignment = course.get_assignment(item.attributes["content_id"])
-                with open(path + sanitize_filename(item.attributes['title']) + ".html", "w", encoding="utf-8") as f:
-                    f.write(assignment.attributes["description"] or "")
-                files = extract_files(assignment.attributes["description"] or "")
-                for file_id in files:
-                    if file_id in files_downloaded:
-                        continue
-                    try:
-                        file = course.get_file(file_id)
-                        files_downloaded.add(file_id)
-                        file.download(path + sanitize_filename(file.attributes['filename']))
-                    except ResourceDoesNotExist:
-                        pass
 
     try:
         files = course.get_files()
