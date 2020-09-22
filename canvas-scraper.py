@@ -21,7 +21,7 @@ def get_course_files(course):
 
     files_downloaded = set() # Track downloaded files for this course to avoid duplicates
 
-    for module in modules[10:12]:
+    for module in modules[:1]:
         module: Module = module
         module_items = module.get_module_items()
         for item in module_items:
