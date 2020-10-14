@@ -122,3 +122,4 @@ if __name__ == "__main__":
     for course in courses:
         course: Course = course
         get_course_files(course)
+ 
