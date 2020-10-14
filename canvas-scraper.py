@@ -18,7 +18,7 @@ def extract_files(text):
 
 def get_course_files(course):
     modules = course.get_modules()
-    modules = modules[20]
+    modules = modules[20:]
 
     files_downloaded = set() # Track downloaded files for this course to avoid duplicates
 
