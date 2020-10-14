@@ -18,10 +18,12 @@ def extract_files(text):
 
 def get_course_files(course):
     modules = course.get_modules()
-
+    
+    new_modules = modules[20:25]
+                     
     files_downloaded = set() # Track downloaded files for this course to avoid duplicates
 
-    for module in modules:
+    for module in new_modules:
         module: Module = module
         module_items = module.get_module_items()
         for item in module_items:
